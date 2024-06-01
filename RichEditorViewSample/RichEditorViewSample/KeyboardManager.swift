@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import RichEditorView
 
 /**
     KeyboardManager is a class that takes care of showing and hiding the RichEditorToolbar when the keyboard is shown.

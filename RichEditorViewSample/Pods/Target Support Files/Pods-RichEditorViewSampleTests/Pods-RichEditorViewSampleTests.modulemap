@@ -1,0 +1,6 @@
+framework module Pods_RichEditorViewSampleTests {
+  umbrella header "Pods-RichEditorViewSampleTests-umbrella.h"
+
+  export *
+  module * { export * }
+}
