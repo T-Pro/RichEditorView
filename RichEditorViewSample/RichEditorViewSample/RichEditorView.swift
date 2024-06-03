@@ -136,12 +136,14 @@ private let DefaultInnerLineHeight: Int = 21
     
     private func setup() {
         // configure webview
+        backgroundColor = .clear
         webView.frame = bounds
         webView.navigationDelegate = self
         webView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         if #available(iOS 10.0, *) {
             webView.configuration.dataDetectorTypes = WKDataDetectorTypes()
         }
+        webView.isOpaque = false
         webView.scrollView.isScrollEnabled = isScrollEnabled
         webView.scrollView.bounces = true
         webView.scrollView.delegate = self
@@ -333,8 +335,13 @@ private let DefaultInnerLineHeight: Int = 21
         runJS("RE.setUnorderedList()")
     }
     
-    public func blockquote() {
-        runJS("RE.setBlockquote()");
+    public func blockquote(backgroundColor: String, textColor: String) {
+        runJS("RE.setBlockquote('\(backgroundColor)', '\(textColor)')");
+    }
+    
+    
+    public func codeBlock() {
+        runJS("RE.setCodeBlock()")
     }
     
     public func alignLeft() {
@@ -493,7 +500,7 @@ private let DefaultInnerLineHeight: Int = 21
     /// For example, if the cursor is directly at the top of what is visible, it will return 0.
     /// This also means that it will be negative if it is above what is currently visible.
     /// Can also return 0 if some sort of error occurs between JS and here.
-    private func relativeCaretYPosition(handler: @escaping (Int) -> Void) {
+    public func relativeCaretYPosition(handler: @escaping (Int) -> Void) {
         runJS("RE.getRelativeCaretYPosition()") { r in
             handler(Int(r) ?? 0)
         }

@@ -15,7 +15,11 @@
  */
  "use strict";
 
-const RE = {};
+var RE = {};
+
+window.onload = function() {
+    RE.callback("ready");
+};
 
 RE.editor = document.getElementById('editor');
 
@@ -415,6 +419,69 @@ RE.getRelativeCaretYPosition = function() {
     return y;
 };
 
-window.onload = function() {
-    RE.callback("ready");
-};
+RE.enabledEditingItems = function(e) {
+    var items = [];
+    if (document.queryCommandState('bold')) {
+        items.push('bold');
+    }
+    if (document.queryCommandState('italic')) {
+        items.push('italic');
+    }
+    if (document.queryCommandState('subscript')) {
+        items.push('subscript');
+    }
+    if (document.queryCommandState('superscript')) {
+        items.push('superscript');
+    }
+    if (document.queryCommandState('strikeThrough')) {
+        items.push('strikeThrough');
+    }
+    if (document.queryCommandState('underline')) {
+        items.push('underline');
+    }
+    if (document.queryCommandState('insertOrderedList')) {
+        items.push('orderedList');
+    }
+    if (document.queryCommandState('insertUnorderedList')) {
+        items.push('unorderedList');
+    }
+    if (document.queryCommandState('justifyCenter')) {
+        items.push('justifyCenter');
+    }
+    if (document.queryCommandState('justifyFull')) {
+        items.push('justifyFull');
+    }
+    if (document.queryCommandState('justifyLeft')) {
+        items.push('justifyLeft');
+    }
+    if (document.queryCommandState('justifyRight')) {
+        items.push('justifyRight');
+    }
+    if (document.queryCommandState('insertHorizontalRule')) {
+        items.push('horizontalRule');
+    }
+    var formatBlock = document.queryCommandValue('formatBlock');
+    if (formatBlock.length > 0) {
+        items.push(formatBlock);
+    }
+
+    window.location.href = "re-state://" + encodeURI(items.join(','));
+}
+
+// Event Listeners
+// RE.editor.addEventListener("input", RE.callback());
+//RE.editor.addEventListener("keyup", function(e) {
+//    var KEY_LEFT = 37, KEY_RIGHT = 39, ENTER = 13;
+    // find an better way to callback the styles that are active when a back key is pressed
+//    RE.enabledEditingItems(e);
+//    if (e.which == KEY_LEFT || e.which == KEY_RIGHT || e.which == ENTER) {
+        //RE.enabledEditingItems(e);
+//    }
+//});
+//RE.editor.addEventListener("click", function(e) {
+//    RE.enabledEditingItems();
+//    RE.callback("click");
+//});
+RE.editor.addEventListener("pointerup", function(e) {
+    RE.enabledEditingItems();
+});

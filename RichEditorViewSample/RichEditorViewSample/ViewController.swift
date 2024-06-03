@@ -22,8 +22,7 @@ class ViewController: UIViewController {
     lazy var toolbar: RichEditorToolbar = {
         let toolbar = RichEditorToolbar(frame: CGRect(x: 0, y: 0, width: self.view.bounds.width, height: 44))
         toolbar.backgroundColor = UIColor.darkGray
-//        toolbar.options = RichEditorDefaultOption.all
-        toolbar.options = [RichEditorDefaultOption.bold, RichEditorDefaultOption.italic, RichEditorDefaultOption.strike, RichEditorDefaultOption.orderedList, RichEditorDefaultOption.unorderedList, RichEditorDefaultOption.alignLeft, RichEditorDefaultOption.alignCenter, RichEditorDefaultOption.alignRight, RichEditorDefaultOption.link]
+        toolbar.options = [RichEditorDefaultOption.italic, RichEditorDefaultOption.bold, RichEditorDefaultOption.strike, RichEditorDefaultOption.link, RichEditorDefaultOption.underline]
         toolbar.tintColor = UIColor.white
         return toolbar
     }()
@@ -43,12 +42,12 @@ class ViewController: UIViewController {
 //        editorView.html = "<b>Jesus is God.</b> He saves by grace through faith alone. Soli Deo gloria! <a href='https://perfectGod.com'>perfectGod.com</a>"
 
         
-        let item = RichEditorOptionItem(image: nil, title: "Clear") { toolbar in
+        let item = RichEditorOptionItem(image: nil, title: "Clear", selectedImage: nil) { toolbar in
 //            toolbar.editor?.html = ""
             self.editorView.editingEnabled = false
         }
         
-        let mention = RichEditorOptionItem(image: nil, title: "@") { toolbar in
+        let mention = RichEditorOptionItem(image: nil, title: "@", selectedImage: nil) { toolbar in
             print("show mention list")
             self.mentionTableView.alpha = 1
         }
@@ -210,7 +209,7 @@ class ViewController: UIViewController {
             //Prints the alertTextField's value
             print(textField.text!)
             if let linkText = textField.text {
-                self.editorView.insertLink(linkText, title: "Link")
+                self.toolbar.editor?.insertLink(linkText, title: title)
             }
             alert.dismiss(animated: true)
         }
@@ -231,7 +230,6 @@ class ViewController: UIViewController {
             completion(text)
         }
     }
-    
 }
 
 extension ViewController: RichEditorDelegate {
@@ -270,7 +268,7 @@ extension ViewController: RichEditorDelegate {
     }
 
     func richEditor(_ editor: RichEditorView, handleCustomAction content: String) { 
-        //
+        print("custom action content", content)
     }
     
 }
