@@ -160,7 +160,7 @@ import UIKit
 
         //-----
         let minIconWidth: CGFloat = 40
-        let barButtonItemMargin: CGFloat = 3
+        let barButtonItemMargin: CGFloat = 15
         let width: CGFloat = buttons.reduce(0) {sofar, new in
             if new.width > 0 {
                 let itemWidth: CGFloat = max(minIconWidth, new.width)
@@ -179,7 +179,7 @@ import UIKit
             toolbar.frame.size.width = width + barButtonItemMargin
         }
         toolbar.frame.size.height = backgroundToolbar.frame.size.height
-        toolbarScroll.contentSize.width = width // change when toolbar not scrolls to last button eg,. > 250
+        toolbarScroll.contentSize.width = 480//width // change when toolbar not scrolls to last button eg,. > 250
     }
     
 }

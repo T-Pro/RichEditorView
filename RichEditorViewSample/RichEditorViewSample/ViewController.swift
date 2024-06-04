@@ -21,8 +21,8 @@ class ViewController: UIViewController {
     
     lazy var toolbar: RichEditorToolbar = {
         let toolbar = RichEditorToolbar(frame: CGRect(x: 0, y: 0, width: self.view.bounds.width, height: 44))
-        toolbar.backgroundColor = UIColor.darkGray
-        toolbar.options = [RichEditorDefaultOption.italic, RichEditorDefaultOption.bold, RichEditorDefaultOption.strike, RichEditorDefaultOption.link, RichEditorDefaultOption.underline]
+        toolbar.backgroundColor = .clear
+        toolbar.options = [RichEditorDefaultOption.bold, RichEditorDefaultOption.italic, RichEditorDefaultOption.strike, RichEditorDefaultOption.underline, RichEditorDefaultOption.link, RichEditorDefaultOption.orderedList, RichEditorDefaultOption.unorderedList]
         toolbar.tintColor = UIColor.white
         return toolbar
     }()
@@ -334,7 +334,11 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
         
         mentionTableView.alpha = 0
                 
-        addAnchorTagWithUserID(userID: userId, userName: userName, backgroundColor: "#132D42", textColor: "#16B0F2", fontSize: "14px", padding: "1px 2px", cornerRadius: "2px")
+        addAnchorTagWithUserID(userID: userId, userName: userName, backgroundColor: "#132D42", textColor: "#16B0F2", fontSize: "16px", padding: "1px 4px", cornerRadius: "2px")
+        
+        editorView.getHtml { str in
+            print("getHtml str", str)
+        }
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

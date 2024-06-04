@@ -53,6 +53,10 @@
 		404669292C0AFD5C003C5A08 /* h5@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 404669062C0AFD5C003C5A08 /* h5@2x.png */; };
 		404669352C0B1ABD003C5A08 /* MentionTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404669342C0B1ABD003C5A08 /* MentionTableCell.swift */; };
 		404669372C0B1ACB003C5A08 /* MentionTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 404669362C0B1ACB003C5A08 /* MentionTableCell.xib */; };
+		40D7D98B2C0F19FA0008D23F /* ordered_list@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 40D7D9892C0F19FA0008D23F /* ordered_list@3x.png */; };
+		40D7D98C2C0F19FA0008D23F /* ordered_list@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 40D7D98A2C0F19FA0008D23F /* ordered_list@2x.png */; };
+		40D7D98F2C0F1A330008D23F /* unordered_list@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 40D7D98D2C0F1A330008D23F /* unordered_list@2x.png */; };
+		40D7D9902C0F1A330008D23F /* unordered_list@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 40D7D98E2C0F1A330008D23F /* unordered_list@3x.png */; };
 		D5A6E34DAA29BBCCBA4357C9 /* Pods_RichEditorViewSampleTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DCFBA4F033F03D526A97F32 /* Pods_RichEditorViewSampleTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -118,6 +122,10 @@
 		404669062C0AFD5C003C5A08 /* h5@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "h5@2x.png"; sourceTree = "<group>"; };
 		404669342C0B1ABD003C5A08 /* MentionTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MentionTableCell.swift; sourceTree = "<group>"; };
 		404669362C0B1ACB003C5A08 /* MentionTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MentionTableCell.xib; sourceTree = "<group>"; };
+		40D7D9892C0F19FA0008D23F /* ordered_list@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ordered_list@3x.png"; sourceTree = "<group>"; };
+		40D7D98A2C0F19FA0008D23F /* ordered_list@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ordered_list@2x.png"; sourceTree = "<group>"; };
+		40D7D98D2C0F1A330008D23F /* unordered_list@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "unordered_list@2x.png"; sourceTree = "<group>"; };
+		40D7D98E2C0F1A330008D23F /* unordered_list@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "unordered_list@3x.png"; sourceTree = "<group>"; };
 		6DCFBA4F033F03D526A97F32 /* Pods_RichEditorViewSampleTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RichEditorViewSampleTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		711C4CDE8BAD5287644EECDB /* Pods-RichEditorViewSample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RichEditorViewSample.release.xcconfig"; path = "Target Support Files/Pods-RichEditorViewSample/Pods-RichEditorViewSample.release.xcconfig"; sourceTree = "<group>"; };
 		7C486AFCBFD3DFEE9E96E745 /* Pods-RichEditorViewSample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RichEditorViewSample.debug.xcconfig"; path = "Target Support Files/Pods-RichEditorViewSample/Pods-RichEditorViewSample.debug.xcconfig"; sourceTree = "<group>"; };
@@ -240,6 +248,10 @@
 		404668EC2C0AFD5C003C5A08 /* icons */ = {
 			isa = PBXGroup;
 			children = (
+				40D7D98D2C0F1A330008D23F /* unordered_list@2x.png */,
+				40D7D98E2C0F1A330008D23F /* unordered_list@3x.png */,
+				40D7D98A2C0F19FA0008D23F /* ordered_list@2x.png */,
+				40D7D9892C0F19FA0008D23F /* ordered_list@3x.png */,
 				403B297A2C0DDE7F006179EC /* alignCenterSelected.png */,
 				403B297C2C0DDE7F006179EC /* alignLeftSelected.png */,
 				403B297B2C0DDE7F006179EC /* alignRightSelected.png */,
@@ -388,6 +400,7 @@
 				403B299B2C0DF468006179EC /* link.png in Resources */,
 				404668EB2C0AFD4C003C5A08 /* normalize.css in Resources */,
 				403B29772C0DDE74006179EC /* strikeSelected.png in Resources */,
+				40D7D98B2C0F19FA0008D23F /* ordered_list@3x.png in Resources */,
 				403B297F2C0DDE7F006179EC /* alignLeftSelected.png in Resources */,
 				403B29A02C0DF468006179EC /* underline.png in Resources */,
 				404668EA2C0AFD4C003C5A08 /* style.css in Resources */,
@@ -404,12 +417,15 @@
 				403B299D2C0DF468006179EC /* strike.png in Resources */,
 				404668E52C0AFD4C003C5A08 /* rich_editor_tests.js in Resources */,
 				404668E82C0AFD4C003C5A08 /* rich_editor_tests.html in Resources */,
+				40D7D98C2C0F19FA0008D23F /* ordered_list@2x.png in Resources */,
 				39BBCFBA1AD0CC7A00A450D2 /* LaunchScreen.xib in Resources */,
 				404669102C0AFD5C003C5A08 /* h2@2x.png in Resources */,
 				404668E62C0AFD4C003C5A08 /* assert.js in Resources */,
 				403B299A2C0DF468006179EC /* alignLeft.png in Resources */,
 				403B29752C0DDE74006179EC /* boldSelected.png in Resources */,
+				40D7D9902C0F1A330008D23F /* unordered_list@3x.png in Resources */,
 				39BBCFB71AD0CC7A00A450D2 /* Images.xcassets in Resources */,
+				40D7D98F2C0F1A330008D23F /* unordered_list@2x.png in Resources */,
 				403B297E2C0DDE7F006179EC /* alignRightSelected.png in Resources */,
 				404668E92C0AFD4C003C5A08 /* rich_editor.html in Resources */,
 				403B299E2C0DF468006179EC /* bold.png in Resources */,
@@ -646,7 +662,7 @@
 				DEVELOPMENT_TEAM = 37D4SXVKKL;
 				INFOPLIST_FILE = RichEditorViewSample/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.cjwirth.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.pepul.RichEditorViewSample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "RichEditorViewSample/RichEditorViewSample-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -664,7 +680,7 @@
 				DEVELOPMENT_TEAM = 37D4SXVKKL;
 				INFOPLIST_FILE = RichEditorViewSample/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.cjwirth.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.pepul.RichEditorViewSample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "RichEditorViewSample/RichEditorViewSample-Bridging-Header.h";
 				SWIFT_VERSION = 4.2;
@@ -682,7 +698,7 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = RichEditorViewSampleTests/Info.plist;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.cjwirth.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.pepul.RichEditorViewSample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RichEditorViewSample.app/RichEditorViewSample";
@@ -696,7 +712,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				DEVELOPMENT_TEAM = 37D4SXVKKL;
 				INFOPLIST_FILE = RichEditorViewSampleTests/Info.plist;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.cjwirth.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.pepul.RichEditorViewSample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RichEditorViewSample.app/RichEditorViewSample";

@@ -107,8 +107,8 @@ public enum RichEditorDefaultOption: RichEditorOption {
             case .italic: name = "italicSelected"
             case .strike: name = "strikeSelected"
             case .underline: name = "underlineSelected"
-            case .orderedList: name = "ordered_list"
-            case .unorderedList: name = "unordered_list"
+            case .orderedList: name = "boldSelected"
+            case .unorderedList: name = "boldSelected"
             case .link: name = "linkSelected"
             }
 
