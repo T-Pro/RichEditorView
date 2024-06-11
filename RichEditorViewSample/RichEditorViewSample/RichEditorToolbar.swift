@@ -32,6 +32,7 @@ import UIKit
         let btn = UIButton(type: .custom)
         btn.setImage(image, for: .normal)
         btn.setImage(selectedImage, for: .selected)
+        btn.frame = CGRect(x: 0, y: 0, width: 35, height: 35)
         self.init(customView: btn)
 
         btn.addTarget(self, action:#selector(RichBarButtonItem.buttonWasTapped) , for: .touchUpInside)
@@ -146,7 +147,7 @@ import UIKit
                     option.action(strongSelf)
                 }
             }
-
+            
             if let image = option.image {
                 let button = RichBarButtonItem(image: image, selectedImage: option.selectedImage, handler: handler)
                 buttons.append(button)
@@ -157,43 +158,24 @@ import UIKit
             }
         }
         toolbar.items = buttons
-
-        //-----
-        let minIconWidth: CGFloat = 40
-        let barButtonItemMargin: CGFloat = 15
+        
+        let defaultIconWidth: CGFloat = 28
+        let barButtonItemMargin: CGFloat = 0
         let width: CGFloat = buttons.reduce(0) {sofar, new in
-            if new.width > 0 {
-                let itemWidth: CGFloat = max(minIconWidth, new.width)
-                return sofar + (itemWidth + barButtonItemMargin)
-            } else if let view = new.value(forKey: "view") as? UIView {
+            if let view = new.value(forKey: "view") as? UIView {
                 return sofar + view.frame.size.width + barButtonItemMargin
             } else {
-                return sofar + (minIconWidth + barButtonItemMargin)
+                return sofar + (defaultIconWidth + barButtonItemMargin)
             }
         }
-        //------
         
         if width < frame.size.width {
-            toolbar.frame.size.width = frame.size.width + barButtonItemMargin
+            toolbar.frame.size.width = frame.size.width
         } else {
-            toolbar.frame.size.width = width + barButtonItemMargin
+            toolbar.frame.size.width = width
         }
-        toolbar.frame.size.height = backgroundToolbar.frame.size.height
-        toolbarScroll.contentSize.width = 480//width // change when toolbar not scrolls to last button eg,. > 250
+        toolbar.frame.size.height = 44
+        toolbarScroll.contentSize.width = width
     }
     
 }
-
-/* ------
- 
- let defaultIconWidth: CGFloat = 22
- let barButtonItemMargin: CGFloat = 11
- let width: CGFloat = buttons.reduce(0) {sofar, new in
- if let view = new.value(forKey: "view") as? UIView {
- return sofar + view.frame.size.width + barButtonItemMargin
- } else {
- return sofar + (defaultIconWidth + barButtonItemMargin)
- }
- }
- 
- */

@@ -82,13 +82,46 @@
             </objects>
             <point key="canvasLocation" x="415" y="432"/>
         </scene>
+        <!--Sample View Controller-->
+        <scene sceneID="fBV-ge-zdw">
+            <objects>
+                <viewController storyboardIdentifier="SampleViewController" id="HYM-2Z-cgk" customClass="SampleViewController" customModule="RichEditorViewSample" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="ahn-dD-9FE"/>
+                        <viewControllerLayoutGuide type="bottom" id="57q-5e-IIH"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Gm0-PC-uHb">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="tOb-Z8-Zts">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="tOb-Z8-Zts" firstAttribute="centerX" secondItem="Gm0-PC-uHb" secondAttribute="centerX" id="8cm-lR-Wxf"/>
+                            <constraint firstItem="tOb-Z8-Zts" firstAttribute="height" secondItem="Gm0-PC-uHb" secondAttribute="height" id="PB4-wG-28z"/>
+                            <constraint firstItem="tOb-Z8-Zts" firstAttribute="centerY" secondItem="Gm0-PC-uHb" secondAttribute="centerY" id="oHV-EL-Wm0"/>
+                            <constraint firstItem="tOb-Z8-Zts" firstAttribute="width" secondItem="Gm0-PC-uHb" secondAttribute="width" id="qEI-lM-M5z"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="table" destination="tOb-Z8-Zts" id="xsX-sU-95I"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="OnK-sz-2Bv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1262" y="425"/>
+        </scene>
     </scenes>
     <resources>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="secondarySystemBackgroundColor">
-            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

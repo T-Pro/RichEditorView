@@ -40,6 +40,10 @@ private let DefaultInnerLineHeight: Int = 21
 /// Called when custom actions are called by callbacks in the JS
 /// By default, this method is not used unless called by some custom JS that you add
 @objc optional func richEditor(_ editor: RichEditorView, handle action: String)
+    
+    /// Called when user click button text in richeditor view in JS
+    /// When user taps on button, return buttonValue string value as response for mention type button click redirection
+    @objc optional func richEditor(_ editor: RichEditorView, didReceiveButtonValue buttonValue: String)
 }
 
 /// RichEditorView is a UIView that displays richly styled text, and allows it to be edited in a WYSIWYG fashion.
@@ -148,6 +152,7 @@ private let DefaultInnerLineHeight: Int = 21
         webView.scrollView.bounces = true
         webView.scrollView.delegate = self
         webView.scrollView.clipsToBounds = false
+        webView.richEditorDelegate = self
         addSubview(webView)
         
         if let filePath = Bundle(for: RichEditorView.self).path(forResource: "rich_editor", ofType: "html") {
@@ -615,4 +620,13 @@ private let DefaultInnerLineHeight: Int = 21
         return true
     }
     
+}
+
+
+extension RichEditorView : RichEditorWebViewDelegate {
+    func richEditorWebView(_ webView: RichEditorWebView, didReceiveButtonValue buttonValue: String) {
+//        print("Delegate received button value: \(buttonValue)")
+        
+        delegate?.richEditor?(self, didReceiveButtonValue: buttonValue)
+    }
 }

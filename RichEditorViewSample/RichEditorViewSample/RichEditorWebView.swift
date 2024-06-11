@@ -5,10 +5,16 @@
 //  Created by C. Bess on 9/18/19.
 //
 
+import UIKit
 import WebKit
+
+protocol RichEditorWebViewDelegate: AnyObject {
+    func richEditorWebView(_ webView: RichEditorWebView, didReceiveButtonValue buttonValue: String)
+}
 
 public class RichEditorWebView: WKWebView, WKScriptMessageHandler {
     
+    var richEditorDelegate: RichEditorWebViewDelegate?
     public var accessoryView: UIView?
     
     public override var inputAccessoryView: UIView? {
@@ -33,11 +39,9 @@ public class RichEditorWebView: WKWebView, WKScriptMessageHandler {
     
     public func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
         if message.name == "anchorClickHandler" {
-            if let body = message.body as? [String: String],
-               let userID = body["userID"],
-               let userName = body["userName"] {
-                print("Anchor clicked with userID: \(userID), userName: \(userName)")
-                // Handle the click action here
+            if let buttonValue = message.body as? String {
+//                print("Button clicked with value: \(buttonValue)")
+                richEditorDelegate?.richEditorWebView(self, didReceiveButtonValue: buttonValue)
             }
         }
     }

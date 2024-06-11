@@ -14,5 +14,13 @@
         </div>
         
         <script type="text/javascript" src="rich_editor.js"></script>
+        <script type="text/javascript">
+            document.getElementById('editor').addEventListener('keypress', function(event) {
+                var invalidChars = ['"', '-', ';', '(', ')', '/', '<', '>', '`', ':', '=']; //"-';()//<>`:=
+                if (invalidChars.includes(event.key)) {
+                    event.preventDefault();
+                }
+            });
+        </script>
     </body>
 </html>

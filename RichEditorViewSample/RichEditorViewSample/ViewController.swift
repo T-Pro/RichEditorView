@@ -22,7 +22,7 @@ class ViewController: UIViewController {
     lazy var toolbar: RichEditorToolbar = {
         let toolbar = RichEditorToolbar(frame: CGRect(x: 0, y: 0, width: self.view.bounds.width, height: 44))
         toolbar.backgroundColor = .clear
-        toolbar.options = [RichEditorDefaultOption.bold, RichEditorDefaultOption.italic, RichEditorDefaultOption.strike, RichEditorDefaultOption.underline, RichEditorDefaultOption.link, RichEditorDefaultOption.orderedList, RichEditorDefaultOption.unorderedList]
+        toolbar.options = [RichEditorDefaultOption.bold, RichEditorDefaultOption.italic, RichEditorDefaultOption.strike, RichEditorDefaultOption.underline, RichEditorDefaultOption.link, RichEditorDefaultOption.orderedList, RichEditorDefaultOption.unorderedList, RichEditorDefaultOption.alignLeft, RichEditorDefaultOption.alignCenter, RichEditorDefaultOption.alignRight]
         toolbar.tintColor = UIColor.white
         return toolbar
     }()
@@ -39,7 +39,8 @@ class ViewController: UIViewController {
 
         toolbar.delegate = self
         toolbar.editor = editorView
-//        editorView.html = "<b>Jesus is God.</b> He saves by grace through faith alone. Soli Deo gloria! <a href='https://perfectGod.com'>perfectGod.com</a>"
+//        editorView.html = "Hello&nbsp;<br><b>Thanks good</b><br><strike style=font-style: italic;>Hello fine</strike><br>Fine now<br>Good work&nbsp;<a href=837GHFU23H49HF24F title=Karthikeyan style=background-color: rgb(19, 45, 66); color: rgb(22, 176, 242); font-size: 16px; padding: 2px 4px; border-top-left-radius: 4px; border-top-right-radius: 4px; border-bottom-right-radius: 4px; border-bottom-left-radius: 4px; text-decoration: none;>Karthikeyan</a>&nbsp;<br><ol><li>Fine</li><li>Thanks</li></ol><div><br></div><div><br></div>"
+        //"<b>Jesus is God.</b> He saves by grace through faith alone. Soli Deo gloria! <a href='https://perfectGod.com'>perfectGod.com</a>"
 
         
         let item = RichEditorOptionItem(image: nil, title: "Clear", selectedImage: nil) { toolbar in
@@ -47,14 +48,15 @@ class ViewController: UIViewController {
             self.editorView.editingEnabled = false
         }
         
-        let mention = RichEditorOptionItem(image: nil, title: "@", selectedImage: nil) { toolbar in
+        
+        let mention = RichEditorOptionItem(image: UIImage(named: "Mention"), title: "Mention", selectedImage: UIImage(named: "Mention")) { toolbar in
             print("show mention list")
             self.mentionTableView.alpha = 1
         }
 
         var options = toolbar.options
-        options.append(mention)
-        options.append(item)
+        options.insert(mention, at: 4)
+//        options.append(item)
         toolbar.options = options
         
         addMentionUsers()
@@ -83,10 +85,9 @@ class ViewController: UIViewController {
             self.mentionTableView.reloadData()
         }
     }
-    
+    // not in use
     // Function to add a button with specified text, value, background color, text color, and font
-    /// Not in use
-        func addButtonWithTextAndValue(buttonText: String, buttonValue: String, backgroundColor: String, textColor: String, font: String) {
+        func addButtonWithTextAndValue(buttonText: String, buttonValue: String, backgroundColor: String, textColor: String, font: String, padding: String, cornerRadius: String) {
             let addButtonScript = """
             var sel = window.getSelection();
             var range = sel.getRangeAt(0);
@@ -96,7 +97,11 @@ class ViewController: UIViewController {
             buttonNode.style.backgroundColor = '\(backgroundColor)';
             buttonNode.style.color = '\(textColor)';
             buttonNode.style.font = '\(font)';
-            buttonNode.setAttribute('onclick', "handleButtonClick('\(buttonValue)')");
+            buttonNode.style.padding = '\(padding)';
+            buttonNode.style.borderRadius = '\(cornerRadius)';
+            buttonNode.onclick = function() {
+                window.webkit.messageHandlers.anchorClickHandler.postMessage('\(buttonValue)');
+            };
             range.insertNode(buttonNode);
             
             // Insert a non-breaking space after the button
@@ -129,6 +134,9 @@ class ViewController: UIViewController {
             anchorNode.style.padding = '\(padding)';
             anchorNode.style.borderRadius = '\(cornerRadius)';
             anchorNode.style.textDecoration = 'none'; // Remove underline
+            anchorNode.onclick = function() {
+                window.webkit.messageHandlers.anchorClickHandler.postMessage('\(userID)');
+            };
             range.insertNode(anchorNode);
             
             // Insert a non-breaking space after the anchor tag
@@ -160,8 +168,8 @@ class ViewController: UIViewController {
             }
         }
 
-    /// Not in use
-    func addMentionWithUsername(username: String, userId: String, backgroundColor: String, textColor: String, padding: String) {
+    // not in use
+    func addMentionWithUsername(username: String, userId: String, backgroundColor: String, textColor: String, padding: String, cornerRadius: String) {
         let sanitizedUserId = abs(userId.hashValue)  // Ensure userId is a positive integer
         let mentionString = """
         var editor = document.getElementById('editor');
@@ -174,7 +182,12 @@ class ViewController: UIViewController {
             mention.style.backgroundColor = '\(backgroundColor)';  // Background color
             mention.style.color = '\(textColor)';            // Text color
             mention.style.padding = '\(padding)';         // Padding [(top & bottom), (left & right)]
-
+            mention.style.borderRadius = '\(cornerRadius)';
+            mention.style.textAlign = 'left';
+            mention.onclick = function() {
+                window.webkit.messageHandlers.anchorClickHandler.postMessage('\(sanitizedUserId)');
+            };
+        
             var nbsp = document.createTextNode('\\u00A0');
             editor.appendChild(mention);
             editor.appendChild(nbsp);
@@ -184,6 +197,23 @@ class ViewController: UIViewController {
             range.collapse(true);
             sel.removeAllRanges();
             sel.addRange(range);
+        
+            // Add event listener for keydown to handle backspace/delete
+            document.addEventListener('keydown', function(event) {
+                if (event.key === 'Backspace' || event.key === 'Delete') {
+                    var selection = window.getSelection();
+                    var range = selection.getRangeAt(0);
+                    if (range.startContainer.nodeType === Node.TEXT_NODE && range.startContainer.parentNode === mention) {
+                        // Prevent the default backspace/delete action
+                        event.preventDefault();
+                        // Remove the anchor node
+                        mention.parentNode.removeChild(anchorNode);
+                    }
+                }
+            }, false);
+        
+        editor.style.textAlign = 'left';
+        
         } else {
             console.log('Editor not found');
         }
@@ -271,6 +301,9 @@ extension ViewController: RichEditorDelegate {
         print("custom action content", content)
     }
     
+    func richEditor(_ editor: RichEditorView, didReceiveButtonValue buttonValue: String) {
+        print("received mention button buttonValue: \(buttonValue)")
+    }
 }
 
 extension ViewController: RichEditorToolbarDelegate {
@@ -333,8 +366,12 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
         let userId = mentionUsers[indexPath.row].id
         
         mentionTableView.alpha = 0
+        
+//        addMentionWithUsername(username: userName, userId: userId, backgroundColor: "#132D42", textColor: "#16B0F2", padding: "2px 4px", cornerRadius: "5px")
+        
+//        addButtonWithTextAndValue(buttonText: userName, buttonValue: userId, backgroundColor: "#132D42", textColor: "#16B0F2", font: "16px", padding: "2px 4px", cornerRadius: "5px")
                 
-        addAnchorTagWithUserID(userID: userId, userName: userName, backgroundColor: "#132D42", textColor: "#16B0F2", fontSize: "16px", padding: "1px 4px", cornerRadius: "2px")
+        addAnchorTagWithUserID(userID: userId, userName: userName, backgroundColor: "#132D42", textColor: "#16B0F2", fontSize: "16px", padding: "2px 4px", cornerRadius: "4px")
         
         editorView.getHtml { str in
             print("getHtml str", str)
